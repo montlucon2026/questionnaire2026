@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Résultats - Montluçon 2026</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #e3f2fd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Résultats des réponses</h1>
+  <table id="results">
+    <thead>
+      <tr>
+        <th>Sexe</th>
+        <th>Âge</th>
+        <th>Quartier</th>
+        <th>Proposition</th>
+        <th>Réponses</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script type="module">
+    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+    const supabase = createClient(
+      "https://TON_URL_SUPABASE.supabase.co",
+      "TON_PUBLIC_ANON_KEY"
+    );
+
+    const { data, error } = await supabase.from("reponses").select("*").order("created_at", { ascending: false });
+
+    const tbody = document.querySelector("tbody");
+
+    if (data && data.length > 0) {
+      data.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${row.sexe || ""}</td>
+          <td>${row.age || ""}</td>
+          <td>${row.quartier || ""}</td>
+          <td>${row.libre || ""}</td>
+          <td>${(row.reponses || []).join(", ")}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } else {
+      tbody.innerHTML = "<tr><td colspan='5'>Aucune donnée disponible</td></tr>";
+    }
+  </script>
+</body>
+</html>
 ...
