@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Montluçon 2026 - Questionnaire</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Montluçon 2026 : Donnez votre avis</h1>
+
+      <form id="questionnaireForm">
+        <label>Sexe (optionnel)</label>
+        <select name="sexe">
+          <option>-- Préfère ne pas dire --</option>
+          <option>Homme</option>
+          <option>Femme</option>
+        </select>
+
+        <label>Âge (optionnel)</label>
+        <input type="number" name="age" placeholder="ex: 35" />
+
+        <label>Quartier (optionnel)</label>
+        <input type="text" name="quartier" placeholder="Nom du quartier" />
+
+        <div id="questionsContainer"></div>
+
+        <label>Vos propositions libres (optionnel)</label>
+        <textarea name="suggestion" rows="4" placeholder="Écrivez ici..."></textarea>
+
+        <button type="submit">Envoyer</button>
+        <p id="successMessage" class="hidden">Merci pour votre participation !</p>
+      </form>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
 ...
