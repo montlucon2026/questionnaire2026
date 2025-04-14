@@ -41,3 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const form = document.getElementById("questionnaireForm");
+const successMessage = document.getElementById("successMessage");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // empêche le rechargement de la page
+  successMessage.classList.remove("hidden");
+});
+
